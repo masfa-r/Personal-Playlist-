@@ -21,14 +21,7 @@ function getVideos() {
         let videoTitle = document.querySelector('#my-video-name').value;
         // console.log(videoTitle);
         let url = document.querySelector('#url').value;
-
         // console.log(url.value);
-
-        let videoID = url.split("=", url.length - 1)[1];
-        // let vID = url.split("v=", url.length - 1)[1];
-        // let videoID = vID.split("&")[0];
-        // let videoID = vID.split("&index")[0];
-
         // Create PlayList card
         const card = document.createElement('div');
         card.className = 'collection-item';
@@ -48,68 +41,56 @@ function getVideos() {
         playListContainer.appendChild(card);
 
 
-        card.onclick = function(){
+        card.onclick = function () {
             const result = `
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${obj.ID}?autoplay=1&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         `;
             const videoDisplay = document.querySelector('#result');
             videoDisplay.innerHTML = result;
         }
-          // Delete playlist item onclick
-          delBtn.onmouseover
-          delBtn.onclick =
-          function removeTask() {
-              delBtn.parentElement.remove();
-              removeFromLocalStorage(card);
-          }
+        // Delete playlist item onclick
+        delBtn.onclick =
+            function removeTask() {
+                delBtn.parentElement.remove();
+                removeFromLocalStorage(card);
+            }
     })
 
 }
 
 // Extracting URL function 
 function extractURL(e) {
+    e.preventDefault();
     // Get User Input Video URL
     let url = document.querySelector('#url').value;
     // console.log(url);
     // console.log(typeof url);
 
-    // Extract Video ID
-    let videoID = url.split("=", url.length - 1)[1];
-    // console.log(videoID);
-    // let vID = url.split("v=", url.length - 1)[1];
-    // let videoID = vID.split("&index")[0];
-    // ?autoplay=1&mute=0
+    let vID = url.split("v=", url.length - 1)[1];
+    let videoID = vID.split("&list")[0];
+    console.log(videoID);
 
-    // https://www.youtube.com/watch?v=mVxMqmeeLXc&list=RDGMEMCMFH2exzjBeE_zAHHJOdxg&index=3
     const result = `
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     `;
-
-
+    // console.log(result);
     addToPlayList.addEventListener("submit", addToCards);
-
-
     const videoDisplay = document.querySelector('#result');
     videoDisplay.innerHTML = result;
-
-    
-    e.preventDefault();
 }
 
 
 // Add to PlayList
 function addToCards(e) {
+    e.preventDefault();
+
     let videoTitle = document.querySelector('#my-video-name').value;
     // console.log(videoTitle);
     let url = document.querySelector('#url').value;
-
     // console.log(url.value);
-  
-    // let vID = url.split("v=", url.length - 1)[1];
-    // let videoID = vID.split("&")[0];
-    // let videoID = vID.split("&index")[0];
-    let videoID =url.split("=", url.length - 1)[1];
-    // console.log(videoID);
+
+    let vID = url.split("v=", url.length - 1)[1];
+    let videoID = vID.split("&list")[0];
 
     // Create PlayList card
     const card = document.createElement('div');
@@ -129,46 +110,33 @@ function addToCards(e) {
 
     // Append cards
     playListContainer.appendChild(card);
-
-    // 
-
-    https://www.youtube.com/watch?v=TrPvQvbp3Cg
-    card.onclick = function(){
-        // <iframe width="940" height="632" src="https://www.youtube.com/embed/s-QnLRNu2K8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    card.onclick = function () {
         const result = `
         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     `;
-
-
         const videoDisplay = document.querySelector('#result');
         videoDisplay.innerHTML = result;
-
-
     }
-    
     // Delete playlist item onclick
     delBtn.onclick =
-    function removeTask() {
-        delBtn.parentElement.remove();
-        removeFromLocalStorage(card);
-    }
+        function removeTask() {
+            delBtn.parentElement.remove();
+            removeFromLocalStorage(card);
+        }
 
     myVideoName.value = '';
     document.querySelector('#url').value = '';
     // Store tasks in Local Storage
     e.target.onclick = storeInLocalStorage(videoID, videoTitle);
-    e.preventDefault();
+
 }
 
 // Add in Local Storage
 function storeInLocalStorage(videoID, videoTitle) {
-
-
     let videoObj = {
         ID: `${videoID}`,
         title: `${videoTitle}`
     }
-
     let videos;
     if (localStorage.getItem('videos') === null) {
         videos = [];
@@ -178,10 +146,7 @@ function storeInLocalStorage(videoID, videoTitle) {
     }
     videos.push(videoObj);
     localStorage.setItem('videos', JSON.stringify(videos));
-
     // console.log(videoObj);
-
-
 }
 
 // Remove From Local Storage
@@ -193,11 +158,13 @@ function removeFromLocalStorage(playlistItem) {
     else {
         videos = JSON.parse(localStorage.getItem('videos'));
     }
-    videos.forEach(function(index) {
-
-       videos.splice(index,1);
+    console.log(playlistItem);
+    videos.forEach(function (video, index) {
+        if (playlistItem.textContent === video.title) {
+            console.log(videos.splice(index, 1));
+        }
     });
+
     localStorage.setItem('videos', JSON.stringify(videos));
 }
 
-{/* <iframe width="853" height="480" src="https://www.youtube.com/embed/ZHKIs2CPEk4?list=RDMM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
