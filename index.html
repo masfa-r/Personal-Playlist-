@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Playlist</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+
+<body>
+
+    <!-- MAIN HEADER -->
+    <div class="main-header">
+        <h4 class="logo">Personal Playlist</h4>
+        <form id="myform">
+            <input type="text" id="url" placeholder="Enter URL" required>
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+    <div class="display-container">
+        <div class="display-lft">
+            <div id="result" style="width: 953px; height: 560px;">
+                <img src="play-button.png" alt="">
+                <!-- <iframe width="953" height="580" src="https://www.youtube.com/embed/7Im-i3GQvVc?autoplay=0&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            </div>
+
+            <div class="video-options-container">
+                <form id="video-opt-form">
+                    <button class="download-btn"><i class="fas fa-download"></i>Download</button>
+                    <input type="text" id="my-video-name" placeholder="Enter Name" required>
+                    <input type="submit" value="Add to playlist" id="add-Btn">
+                </form>
+
+            </div>
+        </div>
+
+        <!-- Playlist -->
+        <div class="playlist-container display-rgt">
+
+            <h4 class="playlist-heading">My Playlist</h4>
+            <div class="collection">
+                <!-- <div class="collection-item">
+                    <i class="fas fa-music"></i>
+                    <p>My Video Number: One</p>
+                    <i class="fas fa-times"></i>
+                </div> -->
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <script src="app.js"></script>
+
+</body>
+
+</html>
