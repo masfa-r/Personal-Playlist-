@@ -2,11 +2,11 @@ const form = document.querySelector('#myform');
 const addToPlayList = document.querySelector('#video-opt-form');
 const playListContainer = document.querySelector('.collection');
 const myVideoName = document.querySelector('#my-video-name');
+let url1;
 
 // Event Listeners
 form.addEventListener("submit", extractURL);
 document.addEventListener('DOMContentLoaded', getVideos);
-
 
 // Get From Local Storage
 function getVideos() {
@@ -39,14 +39,17 @@ function getVideos() {
         card.appendChild(delBtn);
         // Append cards
         playListContainer.appendChild(card);
-
-
-        card.onclick = function () {
+        // Adding to iframe on clicking cards
+        card.onclick = function() {
             const result = `
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${obj.ID}?autoplay=1&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         `;
             const videoDisplay = document.querySelector('#result');
             videoDisplay.innerHTML = result;
+            // Display title below iframe
+            const displayVideoName = document.querySelector('#Display-video-name');
+            displayVideoName.innerHTML = obj.title;
+            document.querySelector('.download-btn').style.display = "flex";
         }
         // Delete playlist item onclick
         delBtn.onclick =
@@ -55,7 +58,6 @@ function getVideos() {
                 removeFromLocalStorage(card);
             }
     })
-
 }
 
 // Extracting URL function 
@@ -77,8 +79,12 @@ function extractURL(e) {
     addToPlayList.addEventListener("submit", addToCards);
     const videoDisplay = document.querySelector('#result');
     videoDisplay.innerHTML = result;
-}
 
+    const displayVideoName = document.querySelector('#Display-video-name');
+    displayVideoName.innerHTML = "";
+    url1 = url;
+    document.querySelector('#url').value = '';
+}
 
 // Add to PlayList
 function addToCards(e) {
@@ -86,10 +92,10 @@ function addToCards(e) {
 
     let videoTitle = document.querySelector('#my-video-name').value;
     // console.log(videoTitle);
-    let url = document.querySelector('#url').value;
+    // let url = document.querySelector('#url').value;
     // console.log(url.value);
 
-    let vID = url.split("v=", url.length - 1)[1];
+    let vID = url1.split("v=", url1.length - 1)[1];
     let videoID = vID.split("&list")[0];
 
     // Create PlayList card
@@ -116,6 +122,11 @@ function addToCards(e) {
     `;
         const videoDisplay = document.querySelector('#result');
         videoDisplay.innerHTML = result;
+
+        const displayVideoName = document.querySelector('#Display-video-name');
+        displayVideoName.innerHTML = videoTitle;
+        
+        document.querySelector('.download-btn').style.display = "flex";
     }
     // Delete playlist item onclick
     delBtn.onclick =
@@ -123,12 +134,11 @@ function addToCards(e) {
             delBtn.parentElement.remove();
             removeFromLocalStorage(card);
         }
-
     myVideoName.value = '';
-    document.querySelector('#url').value = '';
+    const displayVideoName = document.querySelector('#Display-video-name');
+    displayVideoName.innerHTML = videoTitle;
     // Store tasks in Local Storage
     e.target.onclick = storeInLocalStorage(videoID, videoTitle);
-
 }
 
 // Add in Local Storage
@@ -164,7 +174,6 @@ function removeFromLocalStorage(playlistItem) {
             console.log(videos.splice(index, 1));
         }
     });
-
     localStorage.setItem('videos', JSON.stringify(videos));
 }
 

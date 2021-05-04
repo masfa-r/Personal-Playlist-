@@ -6,35 +6,32 @@
     box-sizing: border-box;
 }
 body{
- background: linear-gradient(to bottom right,#501d1d,#0f0e0e);
+ background-color: black;
  background-position: center;
  background-repeat: no-repeat;
  background-attachment: fixed;
  font-family: 'Lato', sans-serif;
+ background-image:linear-gradient(to bottom, rgba(17, 9, 9, 0.9), rgba(10, 2, 2, 0.9)),url('pexels-mark-angelo-1587927.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: top;
 }
-
 /* Scroll Bar */
-/* width */
 ::-webkit-scrollbar {
     width: 10px;
   }
-  
-/* Track */
  ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px rgb(151, 128, 128); 
     background-color:rgb(17, 7, 7);
     border-radius: 25px;
   }
  
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: rgba(49, 18, 18, 0.5); 
     border: 1px solid rgb(53, 44, 44);
     box-shadow: inset 0 0 5px rgb(97, 70, 70);
     border-radius: 25px;
   }
-  
-/* Handle on hover */
  :-webkit-scrollbar-thumb:hover {
     background: rgb(63, 27, 27);
     border-radius: 25px;
@@ -43,17 +40,16 @@ body{
   /* Main Header  */
 .main-header{
     width: 100%;
-    background-color: #cd0722;
     background-color: rgba(14, 9, 9, 0.6);
     color: white;
     display: flex;
     padding: 12px;
-    height: 68px;
+    height: 65px;
     justify-content: space-between;
     position: relative;
-    box-shadow: 0px 1px 10px rgb(63, 27, 27);
-    
+    box-shadow: 0px 1px 10px rgb(77, 53, 53);
 }
+/* Logo */
 .logo{
     font-size: 20px;
     text-align: center;
@@ -63,10 +59,10 @@ body{
     font-weight: lighter;
     font-family: 'Monoton', cursive;
 }
+/* Input Url Form */
 #myform{
 width: 35%;
 }
-
 input[type=text] {
     width: 200px;
     color: white;
@@ -93,25 +89,28 @@ input[type=text] {
       letter-spacing: 0.1em;
       background-color: transparent;
       color: white;
-      border: 2px solid rgb(99, 43, 43);
+      border: 3px solid rgb(99, 43, 43);
       text-decoration: none;
       border-radius: 15px 5px;
       text-align: center;   
   }
-
-  .display-lft{display: flex;
+  input[type="submit"]:hover, .download-btn:hover{
+       box-shadow: inset 0 0 15px #490e0e;
+       cursor: pointer;
+  }
+  .display-lft{
+    display: flex;
     flex-direction: column;
   }
   .display-container{
     width: 100%;
-    padding: 20px;
+    padding: 15px 35px;
     display: flex;
 }
 .playlist-container{
-    margin: 0px 60px;
+    margin: 0px 50px;
     width: 550px;
-    height: 580px;
-    /* background-color: black; */
+    height: 540px;
 }
 .playlist-heading{
     color: white;
@@ -122,17 +121,18 @@ input[type=text] {
     font-size: 22px;
     letter-spacing: 0.15em;
     border-bottom: 2px solid rgb(20, 5, 5);
-    /* box-shadow: -0px 1px 10px rgb(63, 27, 27); */
-    /* background-color: rgba(49, 7, 7,0.6); */
-   
 }
 .video-options-container{
     width: 100%;
     justify-content: space-between;
-    padding: 25px 5px;
+    padding: 8px 5px;
 }
-
-
+.video-name-con{
+    color: white; 
+    margin-left:10px;
+    padding-top: 15px;
+    text-transform: capitalize;
+}
 .download-btn i{
 padding-right: 8px;
 font-size: 15px;
@@ -141,15 +141,15 @@ font-size: 15px;
 /* PLAYLIST DISPLAY CARD */
 .collection{
     width:100%;
-    height: 85%;
+    height: 90%;
     padding: 5px;
    overflow-y: auto;
 }
 .collection-item{
-    width: 100%;
+    width: 90%;
     min-height: 60px;
     /* margin: auto; */
-    margin: 10px 0px;
+    margin: 10px auto;
     color: white;
     display: flex;
     font-size: 20px;
@@ -157,33 +157,187 @@ font-size: 15px;
     justify-content: space-between;
     align-items: center;
     padding: 15px 25px;
-    background-color: rgba(0,0,0,0.5);
+    /* background-color: rgba(0,0,0,0.5); */
+    background-color: rgba(59, 8, 8, 0.2);
     border-radius: 20px;
     border-radius: 15px 5px;
-    transition: transform .2s ease-in-out;
+    transition: transform .1s ease-in-out;
+    background: linear-gradient(to bottom right,#1d0d0d,#0f0e0e);
 
+}
+.collection-item > p{
+    padding: 0px 15px;
 }
 .collection-item:hover{
-    transform: scaleY(1.1);
+    transform: scale(1.05);
     cursor: pointer;
-    
+    box-shadow: 0 8px 6px -6px black;   
 }
-
+.collection-item .fa-play{
+    background-color: rgb(99, 43, 43);
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 50%;
+    box-shadow: 0 8px 6px -6px black;;
+}
+.collection-item .fa-times{
+    transition: transform 0.5s;
+}
+.collection-item .fa-times:hover{
+    transform: rotate(360deg);
+    opacity: 0.4;
+}
 #result{
-    width:953px; height:580px;
+    width:950px; height:540px;
     /* border: 2px solid rgba(0, 0, 0, 0.8); */
     box-shadow: 0 10px 10px -5px;
     background-color: rgb(0, 0, 0,0.2);
     display: flex;
     justify-content: center;
-    align-items: center;
-    
-    
+    align-items: center;  
 }
 #result > img{
     width: 250px;
     height: 250px;
     opacity: 0.5;
 }
+/* Media Queries */
+@media (max-width: 1500px){
+.playlist-container{
+    margin: 0px 25px;
+}
+}
+@media (max-width:1450px){
+    .playlist-container{
+        margin: 0px 10px;
+    } 
+}
+@media (max-width: 1380px){
+    #result{
+        width: 890px;
+        height: 520px;
+    } 
+    .playlist-container{
+        height: 510px;
+    }
+}
 
-/*  VIDEO PLAY ICON */
+@media (max-width: 1290px){
+    .display-container{
+        padding: 10px 25px;
+    }
+    #result{
+        width: 823px;
+        height: 490px;
+    }
+    .playlist-container{
+        margin: 0px 10px;
+        height: 490px ;
+    }
+    }
+
+    @media (max-width: 1160px){
+        .display-container{
+            padding: 20px;
+            flex-wrap: wrap;
+            flex-direction: column;
+            width: 100%;
+            margin: auto;
+        }
+        #result{
+            width: 100%;
+            height: 450px;
+        }
+        .playlist-container{
+            width: 100%;
+            margin: auto;
+            height: auto;
+        }
+        }
+
+        @media (max-width:900px){
+
+            .main-header{
+                flex-wrap: wrap;
+            }
+            #myform{
+                width: 45%;
+            }
+        }
+        @media (max-width:690px){
+            #myform{
+                width: 55%;
+            }
+            .logo{
+                font-size: 16px;
+            }
+            .playlist-container{
+                width: 100%;
+            }
+            #result{
+                width: 100%;
+                height: 380px;
+            }
+        }
+        @media (max-width:580px){
+
+            .main-header{
+                height: auto;
+                box-shadow: none;
+                background-color: transparent;
+                padding: 0;
+            }  
+            .display-container{
+                padding: 10px;
+            }
+            #myform{
+                margin-top: 10px;
+                padding: 10px;
+                width: 100%;
+                padding-bottom: 2px;
+
+            }
+            .logo{
+                padding:20px;
+                margin: 0;
+                width: 100%;
+                text-align: left;
+                
+             box-shadow: 0px 1px 10px rgb(77, 53, 53);
+            }
+            #result{
+                width: 100%;
+                height: 295px;
+            }
+            input[type = text]{
+                width: 100%;
+            }
+            input[type=text]:focus{
+                width: 100%;
+            }
+            input[type=submit]{
+                width: 50%;
+                margin: 10px 5px;
+            }
+            .collection-item{
+                padding: 12px;
+                margin: 8px auto;
+                width: 90%;
+                min-height: 45px;
+                font-size: 17px;
+            }
+            .collection-item .fa-play{
+                padding: 12px;
+                font-size: 10px;
+            }
+            #Display-video-name{
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width:380px){
+            #result{
+                width: 100%;
+                height: 220px;
+            }
+        }

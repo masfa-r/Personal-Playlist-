@@ -25,14 +25,21 @@
 
     <div class="display-container">
         <div class="display-lft">
-            <div id="result" style="width: 953px; height: 560px;">
+            <div id="result">
                 <!-- <img src="play-button.png" alt=""> -->
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/7Im-i3GQvVc?autoplay=0&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <h3 style="color: white;">Add or Select Videos</h3>
+                <!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/7Im-i3GQvVc?autoplay=0&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
             </div>
 
+            <div class="video-name-con" style="display: flex; justify-content: space-between;">
+                <h2 id="Display-video-name">
+
+                </h2>
+                
+                <button class="download-btn" style="display:none;"><i class="fas fa-download"></i>Download</button>
+            </div>
             <div class="video-options-container">
-                <form id="video-opt-form">
-                    <button class="download-btn"><i class="fas fa-download"></i>Download</button>
+                <form id="video-opt-form"> 
                     <input type="text" id="my-video-name" placeholder="Enter Name" required>
                     <input type="submit" value="Add to playlist" id="add-Btn">
                 </form>
