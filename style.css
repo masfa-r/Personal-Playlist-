@@ -11,25 +11,39 @@ body{
  background-repeat: no-repeat;
  background-attachment: fixed;
  font-family: 'Lato', sans-serif;
+ /* background-image:linear-gradient(to bottom, rgba(245, 242, 242, 0.9), rgba(253, 245, 245, 0.8)),url('pexels-mark-angelo-1587927.jpg'); */
  background-image:linear-gradient(to bottom, rgba(17, 9, 9, 0.9), rgba(10, 2, 2, 0.9)),url('pexels-mark-angelo-1587927.jpg');
 background-size: cover;
 background-repeat: no-repeat;
 background-position: top;
+}
+/* .bodyDark{
+ background-image:linear-gradient(to bottom, rgba(17, 9, 9, 0.9), rgba(10, 2, 2, 0.9)),url('pexels-mark-angelo-1587927.jpg');
+
+} */
+
+a{
+    text-decoration: none;
+    
 }
 /* Scroll Bar */
 ::-webkit-scrollbar {
     width: 10px;
   }
  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgb(151, 128, 128); 
+    /* box-shadow: inset 0 0 5px rgb(151, 128, 128);  */
     background-color:rgb(17, 7, 7);
+    /* background-color:rgb(228, 213, 213); */
     border-radius: 25px;
   }
  
 ::-webkit-scrollbar-thumb {
     background: rgba(49, 18, 18, 0.5); 
+    /* background: rgba(223, 213, 213, 0.5); */
     border: 1px solid rgb(53, 44, 44);
+    /* border: 1px solid rgb(156, 146, 146); */
     box-shadow: inset 0 0 5px rgb(97, 70, 70);
+    /* box-shadow: inset 0 0 5px rgb(145, 127, 127); */
     border-radius: 25px;
   }
  :-webkit-scrollbar-thumb:hover {
@@ -41,7 +55,9 @@ background-position: top;
 .main-header{
     width: 100%;
     background-color: rgba(14, 9, 9, 0.6);
+    /* background-color: rgba(180, 179, 179, 0.2); */
     color: white;
+    /* color: rgb(71, 60, 60); */
     display: flex;
     padding: 12px;
     height: 65px;
@@ -49,6 +65,11 @@ background-position: top;
     position: relative;
     box-shadow: 0px 1px 10px rgb(77, 53, 53);
 }
+.main-headerDark{
+    background-color: rgba(14, 9, 9, 0.6); 
+     color: white;
+}
+
 /* Logo */
 .logo{
     font-size: 20px;
@@ -66,37 +87,49 @@ width: 35%;
 input[type=text] {
     width: 200px;
     color: white;
+    /* color: black; */
     background-position: 10px 10px;
     padding: 10px;
     border: none;
     background-color: transparent;
     transition: width 0.4s ease-in-out;
     border-bottom: 1px solid white;
-  }
+    /* border-bottom: 1px solid rgb(145, 104, 104); */
+}
   
   input[type=text]:focus {
     width: 70%;
     border: none;
     outline: none;
     border-bottom: 1px solid white;
+    /* border-bottom: 2px solid rgb(124, 90, 90); */
   }
   input[type=text]::placeholder{
       color: white;
+      /* color: rgb(53, 49, 49); */
   }
-  input[type=submit],.download-btn{
+  input[type=submit],a{
       padding: 10px 15px;
       width: fit-content;
       letter-spacing: 0.1em;
       background-color: transparent;
       color: white;
+      font-size: 15px;
+      /* color: rgb(34, 33, 33); */
       border: 3px solid rgb(99, 43, 43);
+      /* border: 3px solid rgb(122, 98, 98); */
       text-decoration: none;
       border-radius: 15px 5px;
       text-align: center;   
   }
   input[type="submit"]:hover, .download-btn:hover{
        box-shadow: inset 0 0 15px #490e0e;
+       /* box-shadow: inset 0 0 15px #afaaaa; */
        cursor: pointer;
+  }
+  .inputDark{
+      border: 3px solid rgb(99, 43, 43);
+      color: white;
   }
   .display-lft{
     display: flex;
@@ -114,6 +147,7 @@ input[type=text] {
 }
 .playlist-heading{
     color: white;
+    /* color: rgb(68, 61, 61); */
     width: 90%;
     margin: auto;
     text-align: center;
@@ -121,6 +155,7 @@ input[type=text] {
     font-size: 22px;
     letter-spacing: 0.15em;
     border-bottom: 2px solid rgb(20, 5, 5);
+    /* border-bottom: 2px solid rgb(131, 89, 89); */
 }
 .video-options-container{
     width: 100%;
@@ -129,10 +164,12 @@ input[type=text] {
 }
 .video-name-con{
     color: white; 
+    /* color: rgb(46, 36, 36); */
     margin-left:10px;
     padding-top: 15px;
     text-transform: capitalize;
 }
+
 .download-btn i{
 padding-right: 8px;
 font-size: 15px;
@@ -151,34 +188,46 @@ font-size: 15px;
     /* margin: auto; */
     margin: 10px auto;
     color: white;
+    /* color: rgb(63, 60, 60); */
     display: flex;
     font-size: 20px;
     text-transform: capitalize;
     justify-content: space-between;
     align-items: center;
     padding: 15px 25px;
-    /* background-color: rgba(0,0,0,0.5); */
-    background-color: rgba(59, 8, 8, 0.2);
+    background-color: rgba(0,0,0,0.5);
+    /* background-color: rgba(59, 8, 8, 0.2); */
     border-radius: 20px;
     border-radius: 15px 5px;
     transition: transform .1s ease-in-out;
     background: linear-gradient(to bottom right,#1d0d0d,#0f0e0e);
+    /* background:linear-gradient(to bottom right, rgba(104, 99, 99, 0.2),rgba(175, 150, 150, 0.6)); */
 
 }
+/* 
+.collection-item-dark{
+    background-color: rgba(0,0,0,0.5);
+    background: linear-gradient(to bottom right,#1d0d0d,#0f0e0e);
+} */
 .collection-item > p{
     padding: 0px 15px;
 }
 .collection-item:hover{
     transform: scale(1.05);
     cursor: pointer;
-    box-shadow: 0 8px 6px -6px black;   
+    box-shadow: 0 8px 6px -6px black;
+    /* box-shadow: 0 8px 6px -6px rgb(121, 114, 114);    */
 }
 .collection-item .fa-play{
     background-color: rgb(99, 43, 43);
+    /* background-color: rgba(250, 250, 255, 0.459); */
+
+    /* color: rgb(70, 68, 66); */
+    color: white;
     padding: 15px;
     font-size: 16px;
     border-radius: 50%;
-    box-shadow: 0 8px 6px -6px black;;
+    box-shadow: 0 8px 6px -6px black;
 }
 .collection-item .fa-times{
     transition: transform 0.5s;
@@ -201,6 +250,54 @@ font-size: 15px;
     height: 250px;
     opacity: 0.5;
 }
+
+/*  TOGGLE */
+.toggle-container{
+    display: flex;
+    justify-content: flex-end;
+    width: 85%;
+    margin: auto;
+    margin-top: 10px;
+    display: none;
+}
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+label {
+	cursor: pointer;
+	width: 54px;
+	height: 26px;
+	background: rgb(168, 167, 167);
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+label:after {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 17px;
+	height: 17px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+input:checked + label {
+	background: rgb(77, 55, 55);
+}
+
+input:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+
 /* Media Queries */
 @media (max-width: 1500px){
 .playlist-container{

@@ -2,6 +2,8 @@ const form = document.querySelector('#myform');
 const addToPlayList = document.querySelector('#video-opt-form');
 const playListContainer = document.querySelector('.collection');
 const myVideoName = document.querySelector('#my-video-name');
+const downloadBtn = document.querySelector('.download-btn');
+const downloadLink = document.querySelector('#download-link');
 let url1;
 
 // Event Listeners
@@ -40,16 +42,20 @@ function getVideos() {
         // Append cards
         playListContainer.appendChild(card);
         // Adding to iframe on clicking cards
-        card.onclick = function() {
+        card.onclick = function () {
             const result = `
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${obj.ID}?autoplay=1&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         `;
             const videoDisplay = document.querySelector('#result');
             videoDisplay.innerHTML = result;
+
             // Display title below iframe
             const displayVideoName = document.querySelector('#Display-video-name');
             displayVideoName.innerHTML = obj.title;
-            document.querySelector('.download-btn').style.display = "flex";
+
+            // download btn
+            downloadLink.setAttribute("href", `https://en.savefrom.net/20/#url=https://www.youtube.com/watch?v=${obj.ID}`);
+            downloadBtn.style.display = "flex";
         }
         // Delete playlist item onclick
         delBtn.onclick =
@@ -65,9 +71,6 @@ function extractURL(e) {
     e.preventDefault();
     // Get User Input Video URL
     let url = document.querySelector('#url').value;
-    // console.log(url);
-    // console.log(typeof url);
-
     let vID = url.split("v=", url.length - 1)[1];
     let videoID = vID.split("&list")[0];
     console.log(videoID);
@@ -82,6 +85,9 @@ function extractURL(e) {
 
     const displayVideoName = document.querySelector('#Display-video-name');
     displayVideoName.innerHTML = "";
+    // download btn
+    downloadLink.setAttribute("href", `https://en.savefrom.net/20/#url=${url}`);
+    downloadBtn.style.display = "flex";
     url1 = url;
     document.querySelector('#url').value = '';
 }
@@ -125,14 +131,17 @@ function addToCards(e) {
 
         const displayVideoName = document.querySelector('#Display-video-name');
         displayVideoName.innerHTML = videoTitle;
-        
-        document.querySelector('.download-btn').style.display = "flex";
+
+        // download btn
+        downloadLink.setAttribute("href", `https://en.savefrom.net/20/#url=https://www.youtube.com/watch?v=${videoID}`);
+        downloadBtn.style.display = "flex";
     }
     // Delete playlist item onclick
     delBtn.onclick =
         function removeTask() {
             delBtn.parentElement.remove();
             removeFromLocalStorage(card);
+            console.log(videoID);
         }
     myVideoName.value = '';
     const displayVideoName = document.querySelector('#Display-video-name');
@@ -168,12 +177,35 @@ function removeFromLocalStorage(playlistItem) {
     else {
         videos = JSON.parse(localStorage.getItem('videos'));
     }
-    console.log(playlistItem);
+    // console.log(playlistItem);
     videos.forEach(function (video, index) {
         if (playlistItem.textContent === video.title) {
             console.log(videos.splice(index, 1));
-        }
+            // if(videos.length !== 0){  
+            // videos[index].ID;
+            // }
+          }
     });
     localStorage.setItem('videos', JSON.stringify(videos));
 }
+
+// THEME CHANGE ON TOGGLE
+
+// const toggleSwitch = document.querySelector('#switch');
+// toggleSwitch.addEventListener('click',changeTheme);
+
+// function changeTheme(){
+//     let bodyTheme = document.getElementsByTagName("BODY")[0];
+//     bodyTheme.classList.toggle("bodyDark");
+
+//     let x = document.getElementsByClassName('main-header')[0];
+//     x.classList.toggle('main-headerDark');
+
+//     let y = document.getElementsByTagName("input");
+//     y = classList.toggle('inputDark');
+    
+//     let z = document.getElementsByClassName('collection-item');
+//     z.classList.toggle('.collection-item-dark');
+
+// }
 
