@@ -171,8 +171,10 @@ function storeInLocalStorage(videoID, videoTitle) {
 // Remove From Local Storage
 function removeFromLocalStorage(playlistItem) {
     let videos;
+    let v;
     if (localStorage.getItem('videos') === null) {
         videos = [];
+
     }
     else {
         videos = JSON.parse(localStorage.getItem('videos'));
@@ -182,12 +184,16 @@ function removeFromLocalStorage(playlistItem) {
         if (playlistItem.textContent === video.title) {
             console.log(videos.splice(index, 1));
             // if(videos.length !== 0){  
-            // videos[index].ID;
+            //  videos[index].ID;
             // }
-          }
+        }
     });
     localStorage.setItem('videos', JSON.stringify(videos));
 }
+
+
+
+
 
 // THEME CHANGE ON TOGGLE
 

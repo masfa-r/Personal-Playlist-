@@ -13,18 +13,15 @@ body{
  font-family: 'Lato', sans-serif;
  /* background-image:linear-gradient(to bottom, rgba(245, 242, 242, 0.9), rgba(253, 245, 245, 0.8)),url('pexels-mark-angelo-1587927.jpg'); */
  background-image:linear-gradient(to bottom, rgba(17, 9, 9, 0.9), rgba(10, 2, 2, 0.9)),url('pexels-mark-angelo-1587927.jpg');
-background-size: cover;
-background-repeat: no-repeat;
-background-position: top;
+ background-size: cover;
+ background-repeat: no-repeat;
+ background-position: top;
 }
-/* .bodyDark{
- background-image:linear-gradient(to bottom, rgba(17, 9, 9, 0.9), rgba(10, 2, 2, 0.9)),url('pexels-mark-angelo-1587927.jpg');
-
-} */
-
+.bodyLight{
+    background-image:linear-gradient(to bottom, rgba(245, 242, 242, 0.9), rgba(253, 245, 245, 0.8)),url('pexels-mark-angelo-1587927.jpg');
+}
 a{
-    text-decoration: none;
-    
+    text-decoration: none;   
 }
 /* Scroll Bar */
 ::-webkit-scrollbar {
@@ -96,14 +93,17 @@ input[type=text] {
     border-bottom: 1px solid white;
     /* border-bottom: 1px solid rgb(145, 104, 104); */
 }
-  
-  input[type=text]:focus {
+  input[type=text]:focus{
     width: 70%;
     border: none;
     outline: none;
     border-bottom: 1px solid white;
     /* border-bottom: 2px solid rgb(124, 90, 90); */
   }
+  input[type=text]:focus#my-video-name{
+    width: 35%; 
+  }
+
   input[type=text]::placeholder{
       color: white;
       /* color: rgb(53, 49, 49); */
