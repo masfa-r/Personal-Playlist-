@@ -4,11 +4,12 @@ const playListContainer = document.querySelector('.collection');
 const myVideoName = document.querySelector('#my-video-name');
 const downloadBtn = document.querySelector('.download-btn');
 const downloadLink = document.querySelector('#download-link');
-let url1;
+let url1,lastPlayed;
 
 // Event Listeners
 form.addEventListener("submit", extractURL);
 document.addEventListener('DOMContentLoaded', getVideos);
+document.addEventListener('DOMContentLoaded', loadPreviousVideo);
 
 // Get From Local Storage
 function getVideos() {
@@ -55,7 +56,14 @@ function getVideos() {
 
             // download btn
             downloadVideo(obj.ID);
-        }
+
+            lastPlayed = {
+            name: `${obj.title}`,
+            id: `${obj.ID}`
+          }
+          sessionStorage.setItem('lastPlayed', JSON.stringify(lastPlayed));
+        } 
+
         // Delete playlist item onclick
         delBtn.onclick =
             function removeTask() {
@@ -65,6 +73,23 @@ function getVideos() {
     })
 }
 
+// Loading the last played video on page load
+function loadPreviousVideo(){
+
+lastPlayed = JSON.parse(sessionStorage.getItem('lastPlayed'));
+console.log(lastPlayed.id);
+    const result = `
+    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${lastPlayed.id}?autoplay=1&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+`;
+    const videoDisplay = document.querySelector('#result');
+    videoDisplay.innerHTML = result;
+
+    downloadVideo(lastPlayed.id);
+
+    // Display title below iframe
+    const displayVideoName = document.querySelector('#Display-video-name');
+    displayVideoName.innerHTML = lastPlayed.name;
+}
 // Extracting URL function 
 function extractURL(e) {
     e.preventDefault();
@@ -135,6 +160,12 @@ function addToCards(e) {
 
         // download btn
         downloadVideo(videoID);
+
+        lastPlayed = {
+            name: `${videoTitle}`,
+            id: `${videoID}`
+          }
+          sessionStorage.setItem('lastPlayed', JSON.stringify(lastPlayed));
     }
     // Delete playlist item onclick
     delBtn.onclick =
@@ -209,4 +240,3 @@ function changeTheme() {
         document.body.classList.remove("light-mode");
     }
 }
-
