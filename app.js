@@ -54,8 +54,7 @@ function getVideos() {
             displayVideoName.innerHTML = obj.title;
 
             // download btn
-            downloadLink.setAttribute("href", `https://en.savefrom.net/20/#url=https://www.youtube.com/watch?v=${obj.ID}`);
-            downloadBtn.style.display = "flex";
+            downloadVideo(obj.ID);
         }
         // Delete playlist item onclick
         delBtn.onclick =
@@ -85,9 +84,11 @@ function extractURL(e) {
 
     const displayVideoName = document.querySelector('#Display-video-name');
     displayVideoName.innerHTML = "";
+
     // download btn
     downloadLink.setAttribute("href", `https://en.savefrom.net/20/#url=${url}`);
     downloadBtn.style.display = "flex";
+    
     url1 = url;
     document.querySelector('#url').value = '';
 }
@@ -133,8 +134,7 @@ function addToCards(e) {
         displayVideoName.innerHTML = videoTitle;
 
         // download btn
-        downloadLink.setAttribute("href", `https://en.savefrom.net/20/#url=https://www.youtube.com/watch?v=${videoID}`);
-        downloadBtn.style.display = "flex";
+        downloadVideo(videoID);
     }
     // Delete playlist item onclick
     delBtn.onclick =
@@ -150,6 +150,12 @@ function addToCards(e) {
     e.target.onclick = storeInLocalStorage(videoID, videoTitle);
 }
 
+// Download Button function
+function downloadVideo(videoLink){
+
+    downloadLink.setAttribute("href", `https://en.savefrom.net/20/#url=https://www.youtube.com/watch?v=${videoLink}`);
+    downloadBtn.style.display = "flex";
+}
 // Add in Local Storage
 function storeInLocalStorage(videoID, videoTitle) {
     let videoObj = {
@@ -191,27 +197,16 @@ function removeFromLocalStorage(playlistItem) {
     localStorage.setItem('videos', JSON.stringify(videos));
 }
 
-
-
-
-
 // THEME CHANGE ON TOGGLE
 
-// const toggleSwitch = document.querySelector('#switch');
-// toggleSwitch.addEventListener('click',changeTheme);
+const toggleSwitch = document.querySelector('#switch');
+toggleSwitch.addEventListener('click', changeTheme);
 
-// function changeTheme(){
-//     let bodyTheme = document.getElementsByTagName("BODY")[0];
-//     bodyTheme.classList.toggle("bodyDark");
-
-//     let x = document.getElementsByClassName('main-header')[0];
-//     x.classList.toggle('main-headerDark');
-
-//     let y = document.getElementsByTagName("input");
-//     y = classList.toggle('inputDark');
-    
-//     let z = document.getElementsByClassName('collection-item');
-//     z.classList.toggle('.collection-item-dark');
-
-// }
+function changeTheme() {
+    if (toggleSwitch.checked) {
+        document.body.classList.add("light-mode");
+    } else {
+        document.body.classList.remove("light-mode");
+    }
+}
 
